@@ -419,10 +419,10 @@ ConfigurableJoint:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 646423923}
   m_ConnectedBody: {fileID: 472968872}
-  m_Anchor: {x: 0, y: 0, z: 0}
+  m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
-  m_ConnectedAnchor: {x: 10, y: 0, z: 0}
+  m_AutoConfigureConnectedAnchor: 1
+  m_ConnectedAnchor: {x: 10, y: 0.5, z: 0}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -548,7 +548,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 08dcf1316fa165c4eb27ae554bfa05f9, type: 2}
+  - {fileID: 2100000, guid: 3ab0bf5d17440674282b6101368df596, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -776,7 +776,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 7ab13c4a77f5d8f40909cb55ed99e605, type: 2}
+  - {fileID: 2100000, guid: 3ab0bf5d17440674282b6101368df596, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
