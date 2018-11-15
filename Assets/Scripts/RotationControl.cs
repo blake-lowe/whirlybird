@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotationControl : MonoBehaviour {
+public class RotationControl : MonoBehaviour {//finished
 
-    public Vector3 targetRotation;
     Transform t;
 	// Use this for initialization
 	void Start () {
@@ -13,6 +12,7 @@ public class RotationControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        t.eulerAngles = targetRotation;//for now need to add follow parent y and z rotation. Or use a second script placed on the parent
+        Vector3 targetRotation = new Vector3(GetComponentInParent<Transform>().eulerAngles.x, GetComponentInParent<Transform>().eulerAngles.y, 0);
+        t.eulerAngles = targetRotation;
 	}
 }
