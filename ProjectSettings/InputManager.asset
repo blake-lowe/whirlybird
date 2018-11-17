@@ -6,7 +6,7 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Horizontal
+    m_Name: Pitch
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -22,11 +22,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Vertical
+    m_Name: Thrust
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: down
-    positiveButton: up
+    negativeButton: left shift
+    positiveButton: left ctrl
     altNegativeButton: s
     altPositiveButton: w
     gravity: 3
@@ -35,7 +35,7 @@ InputManager:
     snap: 1
     invert: 0
     type: 0
-    axis: 0
+    axis: 1
     joyNum: 0
   - serializedVersion: 3
     m_Name: Fire1
