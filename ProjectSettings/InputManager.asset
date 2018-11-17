@@ -25,8 +25,8 @@ InputManager:
     m_Name: Thrust
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left shift
-    positiveButton: left ctrl
+    negativeButton: left ctrl
+    positiveButton: left shift
     altNegativeButton: s
     altPositiveButton: w
     gravity: 3
