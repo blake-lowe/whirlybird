@@ -11,7 +11,7 @@ public class Rotate : MonoBehaviour {//finished
     // Use this for initialization
     void Start () {
         t = rotor.GetComponent<Transform>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
