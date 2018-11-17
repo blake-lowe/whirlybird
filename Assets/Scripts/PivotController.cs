@@ -11,31 +11,41 @@ public class PivotController : MonoBehaviour {//unfinished
     public float ZTorqueFactor;
     public Transform Chopper;
     public float ChopperRotationLimit;//in one direction
-    public Text PitchLabel;
-    public Text ThrustLabel;
+    public bool UIEnabled;
+    public GameObject Canvas;
+    public Text PitchValue;
+    public Text ThrustValue;
+    private int num;
 	// Use this for initialization
 	void Start () {
-		//todo
+        Canvas.SetActive(UIEnabled);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //assign axis values to ui elements//
-        if (PitchLabel != null)
+        if (PitchValue != null)
         {
-            PitchLabel.text = Input.GetAxis("Pitch").ToString();
+            PitchValue.text = Input.GetAxis("Pitch").ToString();
         }
         else
         {
             Debug.Log("Pitch Label not assigned to PivotController.");
         }
-        if (ThrustLabel != null)
+        if (ThrustValue != null)
         {
-            ThrustLabel.text = Input.GetAxis("Thrust").ToString();
+            ThrustValue.text = Input.GetAxis("Thrust").ToString();
         }
         else
         {
             Debug.Log("Thrust Label not assigned to PivotController.");
         }
+        //change chopper rotation
+        Chopper.localEulerAngles = new Vector3(Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
+        //determine y and z torque
+        //float yTorque
+        //todo
+        
+
     }
 }
