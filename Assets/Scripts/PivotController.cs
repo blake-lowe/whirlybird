@@ -15,7 +15,7 @@ public class PivotController : MonoBehaviour {//unfinished
     public GameObject Canvas;
     public Text PitchValue;
     public Text ThrustValue;
-    private int num;
+
 	// Use this for initialization
 	void Start () {
         Canvas.SetActive(UIEnabled);
@@ -41,11 +41,16 @@ public class PivotController : MonoBehaviour {//unfinished
             Debug.Log("Thrust Label not assigned to PivotController.");
         }
         //change chopper rotation
-        Chopper.localEulerAngles = new Vector3(Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
+        Chopper.localEulerAngles = new Vector3(-1* Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
         //determine y and z torque
-        //float yTorque
-        //todo
-        
+        float theta = (float)(Input.GetAxis("Pitch")*ChopperRotationLimit*Mathf.PI/180.0);
+        float zTorque = Input.GetAxis("Thrust")*ZTorqueFactor*Mathf.Cos(theta);
+        float yTorque = Input.GetAxis("Thrust")*YTorqueFactor*Mathf.Sin(theta);
+        Debug.Log(yTorque + "  " + zTorque);
+        HingeY.AddTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
+        HingeZ.AddTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
+
+
 
     }
 }
