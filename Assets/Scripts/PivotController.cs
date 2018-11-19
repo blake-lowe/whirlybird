@@ -52,8 +52,8 @@ public class PivotController : MonoBehaviour {//unfinished
         float zTorque = Input.GetAxis("Thrust")*ZTorqueFactor*Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
         float yTorque = Input.GetAxis("Thrust")*YTorqueFactor*Mathf.Sin(theta);
         //Debug.Log(yTorque + "  " + zTorque);//this line adds lag
-        HingeY.AddTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
-        HingeZ.AddTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
+        HingeY.AddRelativeTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
+        HingeZ.AddRelativeTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
 
 
 
