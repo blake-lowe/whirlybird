@@ -798,13 +798,16 @@ MonoBehaviour:
   HingeY: {fileID: 2118152411}
   YTorqueFactor: 1
   HingeZ: {fileID: 472968872}
-  ZTorqueFactor: 20
+  ZTorqueFactor: 1000
   Chopper: {fileID: 321235756}
-  ChopperRotationLimit: 10
+  ChopperRotationLimit: 20
   UIEnabled: 1
   Canvas: {fileID: 1798842953}
   PitchValue: {fileID: 2144518458}
   ThrustValue: {fileID: 1073176285}
+  RotorScript: {fileID: 2085603220}
+  minRotorSpeed: 100
+  RotorSpeed: 1000
 --- !u!1 &880893789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,6 +1747,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deactivateAfterSeconds: 5
+--- !u!114 &2085603220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114378050077377512, guid: 0c046966c13dd6648bf950d001f8963c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1858463143}
+  m_Script: {fileID: 11500000, guid: bac7a5e77659ca34dbca9f1b926ed78b, type: 3}
 --- !u!1 &2118152410
 GameObject:
   m_ObjectHideFlags: 0

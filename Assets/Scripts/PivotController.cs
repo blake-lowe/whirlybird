@@ -15,6 +15,9 @@ public class PivotController : MonoBehaviour {//unfinished
     public GameObject Canvas;
     public Text PitchValue;
     public Text ThrustValue;
+    public Rotate RotorScript;
+    public float minRotorSpeed;
+    public float RotorSpeed;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +26,8 @@ public class PivotController : MonoBehaviour {//unfinished
 	
 	// Update is called once per frame
 	void Update () {
+        //set rotor speed
+        RotorScript.rotationSpeed = RotorSpeed * Input.GetAxis("Thrust") + minRotorSpeed;
         //assign axis values to ui elements//
         if (PitchValue != null)
         {
@@ -44,9 +49,9 @@ public class PivotController : MonoBehaviour {//unfinished
         Chopper.localEulerAngles = new Vector3(-1* Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
         //determine y and z torque
         float theta = (float)(Input.GetAxis("Pitch")*ChopperRotationLimit*Mathf.PI/180.0);
-        float zTorque = Input.GetAxis("Thrust")*ZTorqueFactor*Mathf.Cos(theta);
+        float zTorque = Input.GetAxis("Thrust")*ZTorqueFactor*Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
         float yTorque = Input.GetAxis("Thrust")*YTorqueFactor*Mathf.Sin(theta);
-        Debug.Log(yTorque + "  " + zTorque);
+        //Debug.Log(yTorque + "  " + zTorque);//this line adds lag
         HingeY.AddTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
         HingeZ.AddTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
 
