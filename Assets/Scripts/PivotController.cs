@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PivotController : MonoBehaviour {//unfinished
 
+    public bool ControlsEnabled;
     public Rigidbody HingeY;
     public float YTorqueFactor;
     public Rigidbody HingeZ;
@@ -45,16 +46,19 @@ public class PivotController : MonoBehaviour {//unfinished
         {
             Debug.Log("Thrust Label not assigned to PivotController.");
         }
-        //change chopper rotation
-        Chopper.localEulerAngles = new Vector3(-1* Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
-        //determine y and z torque
-        float theta = (float)(Input.GetAxis("Pitch")*ChopperRotationLimit*Mathf.PI/180.0);
-        float zTorque = Input.GetAxis("Thrust")*ZTorqueFactor*Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
-        float yTorque = Input.GetAxis("Thrust")*YTorqueFactor*Mathf.Sin(theta);
-        //Debug.Log(yTorque + "  " + zTorque);//this line adds lag
-        HingeY.AddRelativeTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
-        HingeZ.AddRelativeTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
 
+            //change chopper rotation
+        Chopper.localEulerAngles = new Vector3(-1 * Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
+            //determine y and z torque
+        float theta = (float)(Input.GetAxis("Pitch") * ChopperRotationLimit * Mathf.PI / 180.0);
+        float zTorque = Input.GetAxis("Thrust") * ZTorqueFactor * Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
+        float yTorque = Input.GetAxis("Thrust") * YTorqueFactor * Mathf.Sin(theta);
+        //Debug.Log(yTorque + "  " + zTorque);//this line adds lag
+        if (ControlsEnabled)
+        {
+            HingeY.AddRelativeTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
+            HingeZ.AddRelativeTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
+        }
 
 
     }
