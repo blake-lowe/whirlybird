@@ -20,6 +20,11 @@ public class PivotController : MonoBehaviour {//unfinished
     public float minRotorSpeed;
     public float RotorSpeed;
 
+    public Slider PitchSlider;
+    public Slider ThrustSlider;
+
+    private float RecentPitchAxis;
+
 	// Use this for initialization
 	void Start () {
         Canvas.SetActive(UIEnabled);
@@ -46,18 +51,25 @@ public class PivotController : MonoBehaviour {//unfinished
         {
             Debug.Log("Thrust Label not assigned to PivotController.");
         }
-
-            //change chopper rotation
-        Chopper.localEulerAngles = new Vector3(-1 * Input.GetAxis("Pitch") * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
-            //determine y and z torque
-        float theta = (float)(Input.GetAxis("Pitch") * ChopperRotationLimit * Mathf.PI / 180.0);
+        PitchSlider.value = Input.GetAxis("Pitch");
+        ThrustSlider.value = Input.GetAxis("Thrust");
+        
+        //determine y and z torque
+        float theta = (float)(-Input.GetAxis("Pitch") * ChopperRotationLimit * Mathf.PI / 180.0);
         float zTorque = Input.GetAxis("Thrust") * ZTorqueFactor * Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
         float yTorque = Input.GetAxis("Thrust") * YTorqueFactor * Mathf.Sin(theta);
-        //Debug.Log(yTorque + "  " + zTorque);//this line adds lag
+
         if (ControlsEnabled)
         {
+            RecentPitchAxis = Input.GetAxis("Pitch");
+            Chopper.localEulerAngles = new Vector3(RecentPitchAxis * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
             HingeY.AddRelativeTorque(new Vector3(0, yTorque, 0), ForceMode.Acceleration);
             HingeZ.AddRelativeTorque(new Vector3(0, 0, zTorque), ForceMode.Acceleration);
+        }
+        else if(!ControlsEnabled)
+        {
+            Chopper.localEulerAngles = new Vector3(RecentPitchAxis * ChopperRotationLimit, Chopper.localEulerAngles.y, Chopper.localEulerAngles.z);
+            RotorScript.rotationSpeed = 0;
         }
 
 

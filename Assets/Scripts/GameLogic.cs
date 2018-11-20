@@ -18,6 +18,7 @@ public class GameLogic : MonoBehaviour {
         int startingPoints = 0;
         PointsValue.text = startingPoints.ToString();
         ChooseNewGoal(0);
+        
 	}
 	
 	// Update is called once per frame
@@ -54,12 +55,16 @@ public class GameLogic : MonoBehaviour {
 
     void ChooseNewGoal(int i)
     {
-        int newIndex = Random.Range(0, LandingPads.Count-2);//excluding last index
+        int newIndex = Random.Range(0, LandingPads.Count);//excluding last index
         if(newIndex == i)
         {
-            newIndex = LandingPads.Count-1;
+            ChooseNewGoal(i);           
         }
-        LandingPads[newIndex].Activate();
+        else
+        {
+            LandingPads[newIndex].Activate();
+        }
+        
 
     }
 }
