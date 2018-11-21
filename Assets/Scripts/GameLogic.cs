@@ -14,22 +14,21 @@ public class GameLogic : MonoBehaviour {
     public PivotController pc;
     public List<LandingPadScript> LandingPads;//fill with trigger objects
     public GameObject GameOver;
+    public GameObject Button2;
     public Button ReturnButton;
     //public SoundSource ding;
 	// Use this for initialization
 	void Start () {
+        //ReturnButton.onClick.AddListener(TaskOnClick1);
         int startingPoints = 0;
         PointsValue.text = startingPoints.ToString();
-        ChooseNewGoal(0);
-        ReturnButton.onClick.AddListener(TaskOnClick1);
+        ChooseNewGoal(0);       
     }
 	
-    void TaskOnClick1()
-    {
-        TimeElapsed = 0;
-        PointsValue.text = "0";
-        SceneManager.LoadScene("Menu");
-    }
+    //void TaskOnClick1()
+    //{
+        //SceneManager.LoadScene("Menu");
+    //}
 
 	// Update is called once per frame
 	void Update () {
@@ -42,6 +41,7 @@ public class GameLogic : MonoBehaviour {
         {
             TimeValue.text = "0";
             GameOver.SetActive(true);
+            Button2.SetActive(true);
             pc.ControlsEnabled = false;
         }
         

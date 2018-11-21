@@ -33,7 +33,7 @@ public class PivotController : MonoBehaviour {//unfinished
 	// Update is called once per frame
 	void Update () {
         //set rotor speed
-        RotorScript.rotationSpeed = RotorSpeed * Input.GetAxis("Thrust") + minRotorSpeed;
+        RotorScript.rotationSpeed = RotorSpeed * ((Input.GetAxis("Thrust") + 1) / 2) + minRotorSpeed;
         //assign axis values to ui elements//
         if (PitchValue != null)
         {
@@ -45,19 +45,19 @@ public class PivotController : MonoBehaviour {//unfinished
         }
         if (ThrustValue != null)
         {
-            ThrustValue.text = Input.GetAxis("Thrust").ToString();
+            ThrustValue.text = ((Input.GetAxis("Thrust")) + 1 / 2).ToString();
         }
         else
         {
             Debug.Log("Thrust Label not assigned to PivotController.");
         }
         PitchSlider.value = Input.GetAxis("Pitch");
-        ThrustSlider.value = Input.GetAxis("Thrust");
+        ThrustSlider.value = ((Input.GetAxis("Thrust") + 1) / 2);
         
         //determine y and z torque
         float theta = (float)(-Input.GetAxis("Pitch") * ChopperRotationLimit * Mathf.PI / 180.0);
-        float zTorque = Input.GetAxis("Thrust") * ZTorqueFactor * Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
-        float yTorque = Input.GetAxis("Thrust") * YTorqueFactor * Mathf.Sin(theta);
+        float zTorque = ((Input.GetAxis("Thrust") + 1) / 2) * ZTorqueFactor * Mathf.Cos(theta);//this torque is being applied in reverse as the system rotates 180 degrees
+        float yTorque = ((Input.GetAxis("Thrust") + 1) / 2) * YTorqueFactor * Mathf.Sin(theta);
 
         if (ControlsEnabled)
         {
