@@ -12,7 +12,7 @@ public class PivotController : MonoBehaviour {//unfinished
     public float ZTorqueFactor;
     public Transform Chopper;
     public float ChopperRotationLimit;//in one direction
-    public bool UIEnabled;
+    //public bool UIEnabled;
     public GameObject Canvas;
     public Text PitchValue;
     public Text ThrustValue;
@@ -27,7 +27,7 @@ public class PivotController : MonoBehaviour {//unfinished
 
 	// Use this for initialization
 	void Start () {
-        Canvas.SetActive(UIEnabled);
+        //Canvas.SetActive(UIEnabled);
 	}
 	
 	// Update is called once per frame

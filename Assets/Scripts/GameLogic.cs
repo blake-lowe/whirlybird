@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameLogic : MonoBehaviour {
 
@@ -12,15 +13,24 @@ public class GameLogic : MonoBehaviour {
     private float TimeElapsed = 0;
     public PivotController pc;
     public List<LandingPadScript> LandingPads;//fill with trigger objects
+    public GameObject GameOver;
+    public Button ReturnButton;
     //public SoundSource ding;
 	// Use this for initialization
 	void Start () {
         int startingPoints = 0;
         PointsValue.text = startingPoints.ToString();
         ChooseNewGoal(0);
-        
-	}
+        ReturnButton.onClick.AddListener(TaskOnClick1);
+    }
 	
+    void TaskOnClick1()
+    {
+        TimeElapsed = 0;
+        PointsValue.text = "0";
+        SceneManager.LoadScene("Menu");
+    }
+
 	// Update is called once per frame
 	void Update () {
         TimeElapsed = (TimeElapsed + Time.deltaTime);
@@ -31,6 +41,7 @@ public class GameLogic : MonoBehaviour {
         else
         {
             TimeValue.text = "0";
+            GameOver.SetActive(true);
             pc.ControlsEnabled = false;
         }
         
