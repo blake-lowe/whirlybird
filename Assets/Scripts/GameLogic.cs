@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour {
     public GameObject GameOver;
     public GameObject Button2;
     public Button ReturnButton;
+    public AudioSource Ding;
     //public SoundSource ding;
 	// Use this for initialization
 	void Start () {
@@ -50,6 +51,7 @@ public class GameLogic : MonoBehaviour {
         {
             if (lps.isTriggered == true)
             {
+                Ding.Play();
                 lps.Deactivate();
                 ScorePoints();
                 ChooseNewGoal(LandingPads.IndexOf(lps));

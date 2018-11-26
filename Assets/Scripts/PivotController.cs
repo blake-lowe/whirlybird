@@ -23,6 +23,10 @@ public class PivotController : MonoBehaviour {//unfinished
     public Slider PitchSlider;
     public Slider ThrustSlider;
 
+    public AudioSource ChopperAudio;
+    public float minPitch;//0.6
+    public float maxPitch;//1.15
+
     private float RecentPitchAxis;
 
 	// Use this for initialization
@@ -34,6 +38,7 @@ public class PivotController : MonoBehaviour {//unfinished
 	void Update () {
         //set rotor speed
         RotorScript.rotationSpeed = RotorSpeed * ((Input.GetAxis("Thrust") + 1) / 2) + minRotorSpeed;
+        ChopperAudio.pitch = minPitch + (maxPitch - minPitch) * ((Input.GetAxis("Thrust") + 1) / 2);
         //assign axis values to ui elements//
         if (PitchValue != null)
         {
